@@ -3,1013 +3,1174 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Caminhos da Terra - Viagens e Turismo | 18 Anos Criando Memórias</title>
-  <meta name="description" content="Mais de 18 anos de tradição em Sorocaba/SP realizando sonhos com excursões rodoviárias, pacotes nacionais e internacionais. Mais de 880 avaliações 4.8★ no Google.">
-  
-  <!-- Favicon -->
+  <title>Caminhos da Terra — Viagens & Turismo | Sorocaba/SP desde 2008</title>
+  <meta name="description" content="18 anos realizando sonhos em Sorocaba/SP. Excursões rodoviárias, pacotes nacionais e internacionais. +880 avaliações 4.8★ no Google.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
-  
-  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS CDN -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            heading: ['Outfit', 'sans-serif'],
+            sans:    ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Syne', 'Inter', 'sans-serif'],
           },
           colors: {
-            brand: {
-              900: '#0B1E36', // Azul marinho profundo
-              800: '#112C4E',
-              700: '#183B64',
-              600: '#235085',
-              gold: '#D97706', // Dourado
-              'gold-light': '#F59E0B',
-              amber: '#FBBF24',
-              green: '#16A34A', // Botões de alta conversão
-              'green-hover': '#15803D',
-              whatsapp: '#25D366',
-            }
+            sky:    { ocean: '#0ea5e9', deep: '#0284c7', pale: '#e0f2fe', mid: '#38bdf8' },
+            stone:  { hero: '#1a2332' },
+            jade:   { DEFAULT: '#10b981', dark: '#059669', light: '#34d399', pale: '#d1fae5' },
+            sand:   { DEFAULT: '#fef9f0', warm: '#fdf4e7' },
           },
           keyframes: {
-            pulseSlow: {
-              '0%, 100%': { transform: 'scale(1)', opacity: '1' },
-              '50%': { transform: 'scale(1.06)', opacity: '0.9' }
-            }
+            'bob':       { '0%,100%':{ transform:'translateY(0)' }, '50%':{ transform:'translateY(-10px)' } },
+            'fade-up':   { from:{ opacity:'0', transform:'translateY(24px)' }, to:{ opacity:'1', transform:'none' } },
+            'fade-in':   { from:{ opacity:'0' }, to:{ opacity:'1' } },
+            'slide-r':   { from:{ opacity:'0', transform:'translateX(32px)' }, to:{ opacity:'1', transform:'none' } },
+            'shimmer':   { '0%':{ backgroundPosition:'-200% center'}, '100%':{ backgroundPosition:'200% center'} },
           },
           animation: {
-            'pulse-slow': 'pulseSlow 2.5s infinite ease-in-out',
-          }
+            'bob':       'bob 4.5s ease-in-out infinite',
+            'fade-up':   'fade-up .7s ease both',
+            'fade-in':   'fade-in .6s ease both',
+            'slide-r':   'slide-r .8s ease both',
+            'shimmer':   'shimmer 3.5s linear infinite',
+          },
         }
       }
     }
   </script>
 
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
   <style>
-    /* Suporte a classes adicionais e animações */
-    .glass-nav {
-      background: rgba(11, 30, 54, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    *, *::before, *::after { box-sizing: border-box; }
+    ::selection { background: #bae6fd; color: #0369a1; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 9px; }
+
+    /* ── Reveal on scroll ─────────────────── */
+    .reveal, .reveal-r, .reveal-l {
+      opacity: 0; transition: opacity .65s ease, transform .65s ease;
     }
-    .badge-blur {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+    .reveal   { transform: translateY(28px); }
+    .reveal-r { transform: translateX(32px); }
+    .reveal-l { transform: translateX(-32px); }
+    .reveal.in, .reveal-r.in, .reveal-l.in { opacity: 1; transform: none; }
+
+    /* ── Mega wordmark ────────────────────── */
+    .hero-wordmark {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(4.5rem, 16vw, 15rem);
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(255,255,255,0.22);
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.55) 0%,
+        rgba(255,255,255,0.10) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      user-select: none;
+      pointer-events: none;
     }
+
+    /* ── Pill nav glass ───────────────────── */
+    .pill-nav {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    /* ── Floating card glass ──────────────── */
+    .float-card {
+      background: rgba(255,255,255,0.97);
+      border: 1px solid rgba(255,255,255,0.70);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* ── Section card light glass ─────────── */
+    .card-light {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      transition: box-shadow .3s ease, transform .3s ease, border-color .3s ease;
+    }
+    .card-light:hover {
+      box-shadow: 0 20px 60px -12px rgba(14,165,233,.16);
+      transform: translateY(-4px);
+      border-color: #bae6fd;
+    }
+
+    /* ── CTA jade shimmer ─────────────────── */
+    .btn-jade {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .btn-jade::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%);
+      background-size: 200% auto;
+      animation: shimmer 3.5s linear infinite;
+    }
+    .btn-jade:hover { transform: translateY(-2px); box-shadow: 0 12px 36px -6px rgba(16,185,129,.45); }
+
+    /* ── Arrow circle ─────────────────────── */
+    .arrow-circle {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 2rem; height: 2rem; border-radius: 9999px;
+      background: #0284c7; color: #fff; flex-shrink: 0;
+      transition: transform .25s;
+    }
+    a:hover .arrow-circle, button:hover .arrow-circle { transform: translateX(3px); }
+
+    /* ── FAQ smooth ───────────────────────── */
+    .faq-body { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.4,0,.2,1), opacity .3s; opacity: 0; }
+    .faq-body.open { max-height: 260px; opacity: 1; }
+    .faq-icon { transition: transform .35s cubic-bezier(.4,0,.2,1); }
+    .faq-icon.open { transform: rotate(45deg); }
+
+    /* ── Destination card image zoom ─────── */
+    .dest-img { overflow: hidden; }
+    .dest-img img { transition: transform .7s cubic-bezier(.25,.46,.45,.94); }
+    .dest-img:hover img { transform: scale(1.06); }
+
+    /* ── WA balloon ───────────────────────── */
+    #wa-balloon {
+      opacity: 0; transform: scale(.88) translateX(10px);
+      transition: opacity .4s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+      pointer-events: none;
+    }
+    #wa-balloon.show { opacity: 1; transform: scale(1) translateX(0); pointer-events: auto; }
+
+    /* ── Stats ticker ─────────────────────── */
+    .stat-bar { background: linear-gradient(135deg,#0ea5e9,#0284c7); }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-gold-light selection:text-white">
 
-  <!-- ==================== HEADER FIXO ==================== -->
-  <header class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-white/10 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        
-        <!-- Logo Texto Elegante -->
-        <a href="#" class="flex items-center gap-3 group">
-          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-gold to-brand-amber flex items-center justify-center text-brand-900 shadow-md group-hover:scale-105 transition duration-300">
-            <i data-lucide="compass" class="w-6 h-6 stroke-[2.2]"></i>
+<body class="bg-white text-slate-800 font-sans antialiased overflow-x-hidden">
+
+<!-- ══════════════════════════════════════════════════════
+     HERO — FULL VIEWPORT CINEMATOGRÁFICO
+══════════════════════════════════════════════════════ -->
+<section class="relative w-full min-h-screen overflow-hidden flex flex-col">
+
+  <!-- Imagem de Fundo Panorâmica -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&q=85&w=2400"
+      alt="Montanhas da Patagônia — Caminhos da Terra"
+      class="w-full h-full object-cover object-center"
+      fetchpriority="high"
+      width="2400" height="1600">
+    <!-- Gradiente sobreposto: escurece base, deixa topo respirar -->
+    <div class="absolute inset-0"
+         style="background: linear-gradient(
+           to bottom,
+           rgba(10,22,38,0.38) 0%,
+           rgba(10,22,38,0.28) 35%,
+           rgba(10,22,38,0.52) 70%,
+           rgba(10,22,38,0.82) 100%
+         )"></div>
+  </div>
+
+  <!-- ──── NAVBAR PILL FLUTUANTE ──────────────────────── -->
+  <header class="relative z-30 w-full px-4 sm:px-6 lg:px-10 pt-6">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Desktop Navbar: logo | pill central | CTA -->
+      <div class="hidden lg:flex items-center justify-between gap-4">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2.5 group shrink-0">
+          <div class="w-8 h-8 rounded-lg bg-white/20 border border-white/35 flex items-center justify-center text-white/90 backdrop-blur-sm">
+            <i data-lucide="compass" class="w-4 h-4"></i>
           </div>
-          <div>
-            <span class="block font-heading font-extrabold text-xl text-white tracking-tight leading-none">
-              CAMINHOS <span class="text-brand-amber font-light">DA TERRA</span>
-            </span>
-            <span class="text-[10px] uppercase font-semibold text-slate-300 tracking-widest">
-              Viagens & Turismo • Desde 2008
-            </span>
+          <div class="leading-none">
+            <span class="block text-white font-bold text-[15px] tracking-tight">Caminhos da Terra</span>
+            <span class="block text-white/55 text-[10px] font-medium tracking-widest uppercase">Est. 2008 · Sorocaba</span>
           </div>
         </a>
 
-        <!-- Menu Desktop -->
-        <nav class="hidden md:flex items-center gap-8">
-          <a href="#destinos" class="text-sm font-medium text-slate-200 hover:text-brand-amber transition duration-150">Destinos</a>
-          <a href="#como-funciona" class="text-sm font-medium text-slate-200 hover:text-brand-amber transition duration-150">Como Funciona</a>
-          <a href="#depoimentos" class="text-sm font-medium text-slate-200 hover:text-brand-amber transition duration-150">Depoimentos</a>
-          <a href="#faq" class="text-sm font-medium text-slate-200 hover:text-brand-amber transition duration-150">Dúvidas</a>
-          <a href="#contato" class="text-sm font-medium text-slate-200 hover:text-brand-amber transition duration-150">Contato</a>
+        <!-- Menu Pill Central -->
+        <nav class="pill-nav rounded-full px-2 py-2 flex items-center gap-1">
+          <a href="#" class="px-5 py-2 rounded-full text-white/90 hover:text-white hover:bg-white/15 text-sm font-medium transition">Início</a>
+          <a href="#destinos" class="px-5 py-2 rounded-full text-white/90 hover:text-white hover:bg-white/15 text-sm font-medium transition">Destinos</a>
+          <a href="#pacotes" class="px-5 py-2 rounded-full text-white/90 hover:text-white hover:bg-white/15 text-sm font-medium transition">Pacotes</a>
+          <a href="#contato" class="px-5 py-2 rounded-full text-white/90 hover:text-white hover:bg-white/15 text-sm font-medium transition">Contato</a>
         </nav>
 
-        <!-- CTA Header -->
-        <div class="hidden lg:flex items-center gap-4">
-          <a href="https://wa.me/551533427717?text=Olá!%20Vim%20pelo%20site%20da%20Caminhos%20da%20Terra%20e%20gostaria%20de%20falar%20com%20um%20consultor." 
-             target="_blank"
-             rel="noopener noreferrer"
-             class="flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-white transition">
-            <i data-lucide="phone-call" class="w-4 h-4 text-brand-amber"></i>
-            <span>(15) 3342-7717</span>
-          </a>
-          <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20solicitar%20uma%20cotação%20para%20minha%20próxima%20viagem." 
-             target="_blank"
-             rel="noopener noreferrer"
-             class="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-hover text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-lg shadow-green-900/20 hover:shadow-green-900/40 transform hover:-translate-y-0.5 transition duration-200">
-            <i data-lucide="send" class="w-4 h-4"></i>
-            <span>Cotar Viagem</span>
-          </a>
-        </div>
+        <!-- Botão Pill Branco -->
+        <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20solicitar%20uma%20cotação%20de%20viagem."
+           target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-2.5 bg-white text-slate-900 font-semibold text-sm px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 shrink-0">
+          <span>Solicitar Cotação</span>
+          <span class="arrow-circle w-7 h-7">
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </a>
+      </div>
 
-        <!-- Botão Menu Mobile -->
-        <div class="md:hidden flex items-center gap-3">
-          <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20uma%20cotação%20pelo%20WhatsApp." 
-             target="_blank" 
-             class="p-2 rounded-lg bg-brand-green text-white">
-            <i data-lucide="message-circle" class="w-5 h-5"></i>
+      <!-- Mobile Navbar -->
+      <div class="lg:hidden flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-lg bg-white/20 border border-white/35 flex items-center justify-center text-white backdrop-blur-sm">
+            <i data-lucide="compass" class="w-4 h-4"></i>
+          </div>
+          <span class="text-white font-bold text-[15px] tracking-tight">Caminhos da Terra</span>
+        </a>
+        <div class="flex items-center gap-2">
+          <a href="https://wa.me/551533427717" target="_blank" rel="noopener noreferrer"
+             class="pill-nav rounded-full px-4 py-2 text-white text-xs font-semibold flex items-center gap-1.5">
+            <i data-lucide="message-circle" class="w-3.5 h-3.5 text-green-300"></i>
+            WhatsApp
           </a>
-          <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-200 hover:text-white focus:outline-none">
-            <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+          <button id="mob-toggle" class="w-9 h-9 rounded-full bg-white/20 border border-white/30 backdrop-blur-sm flex items-center justify-center text-white" aria-label="Menu">
+            <i data-lucide="menu" class="w-4 h-4" id="mob-icon-open"></i>
+            <i data-lucide="x" class="w-4 h-4 hidden" id="mob-icon-close"></i>
           </button>
         </div>
-
       </div>
-    </div>
 
-    <!-- Dropdown Mobile -->
-    <div id="mobile-menu" class="hidden md:hidden bg-brand-900 border-b border-white/10 px-4 pt-3 pb-6 space-y-3">
-      <a href="#destinos" class="block py-2 text-base font-medium text-slate-200 hover:text-brand-amber mobile-link">Destinos</a>
-      <a href="#como-funciona" class="block py-2 text-base font-medium text-slate-200 hover:text-brand-amber mobile-link">Como Funciona</a>
-      <a href="#depoimentos" class="block py-2 text-base font-medium text-slate-200 hover:text-brand-amber mobile-link">Depoimentos</a>
-      <a href="#faq" class="block py-2 text-base font-medium text-slate-200 hover:text-brand-amber mobile-link">Dúvidas Frequentes</a>
-      <a href="#contato" class="block py-2 text-base font-medium text-slate-200 hover:text-brand-amber mobile-link">Fale Conosco</a>
-      <div class="pt-2 border-t border-white/10">
-        <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20uma%20cotação%20para%20viagem." 
-           target="_blank"
-           class="w-full flex items-center justify-center gap-2 bg-brand-green text-white font-bold py-3 rounded-xl shadow-md">
-          <i data-lucide="message-circle" class="w-5 h-5"></i>
-          <span>Solicitar Cotação no WhatsApp</span>
-        </a>
+      <!-- Mobile Dropdown -->
+      <div id="mob-menu" class="hidden lg:hidden mt-3 pill-nav rounded-3xl p-4 space-y-1">
+        <a href="#destinos"     class="block px-4 py-2.5 rounded-full text-white/90 hover:bg-white/15 text-sm font-medium transition mob-link">Destinos</a>
+        <a href="#pacotes"      class="block px-4 py-2.5 rounded-full text-white/90 hover:bg-white/15 text-sm font-medium transition mob-link">Pacotes</a>
+        <a href="#como-funciona" class="block px-4 py-2.5 rounded-full text-white/90 hover:bg-white/15 text-sm font-medium transition mob-link">Como Funciona</a>
+        <a href="#contato"      class="block px-4 py-2.5 rounded-full text-white/90 hover:bg-white/15 text-sm font-medium transition mob-link">Contato</a>
+        <div class="pt-2 border-t border-white/15">
+          <a href="https://wa.me/551533427717?text=Olá!%20Quero%20cotar%20uma%20viagem."
+             target="_blank" rel="noopener noreferrer" class="mob-link
+             flex items-center justify-center gap-2 bg-white text-slate-900 font-semibold text-sm px-5 py-3 rounded-full">
+            <span>Solicitar Cotação</span>
+            <span class="arrow-circle w-7 h-7"><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+          </a>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- ==================== HERO SECTION ==================== -->
-  <section class="relative min-h-[92vh] flex items-center pt-24 pb-16 bg-brand-900 overflow-hidden">
-    <!-- Imagem de Fundo com Overlay -->
-    <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000" 
-           alt="Destino paradisíaco Caminhos da Terra" 
-           class="w-full h-full object-cover object-center scale-105 transform motion-safe:animate-pulseSlow">
-      <div class="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-900/90 to-brand-900/60"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-brand-900 via-transparent to-brand-900/40"></div>
-    </div>
+  <!-- ──── WORDMARK MASSIVO ────────────────────────────── -->
+  <div class="relative z-10 mt-auto px-4 sm:px-8 lg:px-12 select-none overflow-hidden" aria-hidden="true">
+    <p class="hero-wordmark">CAMINHOS</p>
+  </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-      <div class="max-w-3xl">
-        
-        <!-- Selo de Autoridade -->
-        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full badge-blur border border-amber-400/30 text-amber-300 text-xs sm:text-sm font-semibold tracking-wide mb-6 shadow-inner">
-          <span class="flex h-2 w-2 relative">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-amber opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-amber"></span>
-          </span>
-          <span>18 Anos de Tradição e Excelência em Sorocaba</span>
-          <span class="text-white/40">•</span>
-          <span class="flex items-center gap-1 text-amber-400 font-bold">
-            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i> 4.8 no Google
-          </span>
+  <!-- ──── CONTEÚDO HERO INFERIOR ─────────────────────── -->
+  <div class="relative z-20 w-full px-4 sm:px-6 lg:px-10 pb-10 lg:pb-16 mt-[-2vw]">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-end justify-between gap-10">
+
+      <!-- Lado Esquerdo: Tag + Headline + CTA -->
+      <div class="max-w-xl">
+        <!-- Badge Tag -->
+        <div class="inline-flex items-center gap-2 pill-nav rounded-full px-4 py-2 mb-6">
+          <span class="w-2 h-2 rounded-full bg-green-400 shrink-0 animate-pulse"></span>
+          <span class="text-white/90 text-xs font-semibold tracking-wide">Agência referência em Sorocaba/SP · Desde 2008</span>
         </div>
 
-        <!-- Headline Principal -->
-        <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.12] mb-6">
-          Sua próxima grande viagem com a segurança de <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-amber to-amber-200">quem entende do assunto.</span>
+        <!-- Headline -->
+        <h1 class="font-display font-bold text-white text-3xl sm:text-4xl lg:text-5xl leading-[1.12] tracking-tight mb-8">
+          Viagens sob medida para quem busca mais do que um roteiro comum.
         </h1>
 
-        <!-- Subheadline Persuasiva -->
-        <p class="text-lg sm:text-xl text-slate-300 leading-relaxed font-normal mb-8 max-w-2xl">
-          Excursões rodoviárias confortáveis, pacotes nacionais para os melhores resorts e roteiros internacionais completos. Deixe o planejamento, passagens e suporte com a agência mais bem avaliada da região.
+        <!-- CTA Pill Branco + Pill Transparente -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20uma%20cotação%20personalizada%20de%20viagem."
+             target="_blank" rel="noopener noreferrer"
+             class="flex items-center gap-2.5 bg-white text-slate-900 font-bold text-sm px-7 py-3.5 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5">
+            <span>Cotar Minha Viagem</span>
+            <span class="arrow-circle w-8 h-8"><i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+          </a>
+          <a href="#pacotes"
+             class="flex items-center gap-2 pill-nav rounded-full px-6 py-3.5 text-white/90 font-semibold text-sm hover:bg-white/25 transition">
+            <i data-lucide="grid-3x3" class="w-4 h-4 text-white/70"></i>
+            Ver Pacotes
+          </a>
+        </div>
+      </div>
+
+      <!-- Lado Direito: Card Flutuante "Próxima Viagem" -->
+      <div class="w-full max-w-xs sm:max-w-sm lg:max-w-[320px] animate-bob">
+        <div class="float-card rounded-[2.5rem] p-6 shadow-2xl">
+
+          <!-- Header do card -->
+          <div class="flex items-center gap-2 mb-5">
+            <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
+            <span class="text-xs font-semibold text-sky-700 tracking-wide uppercase">Planeje suas próximas férias</span>
+          </div>
+
+          <!-- Preview de destino com play button -->
+          <div class="relative rounded-2xl overflow-hidden mb-5 aspect-[16/9]">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600"
+                 alt="Destino em destaque" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <!-- Botão play circular -->
+            <button class="absolute inset-0 flex items-center justify-center group" aria-label="Ver vídeo de destinos">
+              <span class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <i data-lucide="play" class="w-5 h-5 text-sky-600 ml-0.5"></i>
+              </span>
+            </button>
+          </div>
+
+          <!-- Subtítulo -->
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">
+            Pacotes rodoviários e aéreos com saídas de <strong class="text-slate-800">Sorocaba</strong> e assistência personalizada 24h.
+          </p>
+
+          <!-- Métricas rápidas no card -->
+          <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+            <div class="text-center">
+              <p class="font-display font-bold text-lg text-slate-900">18<span class="text-sky-500">+</span></p>
+              <p class="text-[10px] text-slate-500 font-medium uppercase tracking-wide">Anos</p>
+            </div>
+            <div class="w-px h-8 bg-slate-100"></div>
+            <div class="text-center">
+              <p class="font-display font-bold text-lg text-slate-900">880<span class="text-sky-500">+</span></p>
+              <p class="text-[10px] text-slate-500 font-medium uppercase tracking-wide">Reviews</p>
+            </div>
+            <div class="w-px h-8 bg-slate-100"></div>
+            <div class="text-center">
+              <p class="font-display font-bold text-lg text-slate-900">4.8<span class="text-amber-400">★</span></p>
+              <p class="text-[10px] text-slate-500 font-medium uppercase tracking-wide">Google</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     BARRA DE AUTORIDADE — TONS CLAROS
+══════════════════════════════════════════════════════ -->
+<section class="bg-white border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center reveal">
+
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-500">
+          <i data-lucide="calendar-check" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <p class="font-display font-bold text-3xl text-slate-900">18 <span class="text-sky-500">Anos</span></p>
+          <p class="text-sm text-slate-500 mt-0.5">Tradição desde 2008 em Sorocaba</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-500">
+          <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+        </div>
+        <div>
+          <p class="font-display font-bold text-3xl text-slate-900">4.8 <span class="text-amber-500">★</span></p>
+          <p class="text-sm text-slate-500 mt-0.5">+880 avaliações no Google</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-jade-pale border border-green-100 flex items-center justify-center text-jade">
+          <i data-lucide="users" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <p class="font-display font-bold text-3xl text-slate-900">25k<span class="text-jade">+</span></p>
+          <p class="text-sm text-slate-500 mt-0.5">Passageiros realizados</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     VITRINE DE DESTINOS
+══════════════════════════════════════════════════════ -->
+<section id="destinos" class="py-24 lg:py-32 bg-[#fafbfc]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Cabeçalho -->
+    <div class="max-w-2xl mb-14 reveal">
+      <p class="text-sky-600 text-xs font-bold uppercase tracking-widest mb-3">Experiências Curadas</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 leading-tight mb-4">
+        Destinos que ficam<br>na memória para sempre.
+      </h2>
+      <p class="text-slate-500 text-base leading-relaxed">
+        Da Serra Gaúcha às praias cristalinas do Nordeste e aos roteiros internacionais — cada detalhe cuidado pela equipe que você confia.
+      </p>
+    </div>
+
+    <!-- Grid Assimétrico: 1 card grande + 2 menores -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- Card Grande: Gramado / Serra Gaúcha -->
+      <article class="lg:col-span-7 card-light rounded-3xl overflow-hidden group reveal-l">
+        <div class="dest-img h-72 sm:h-96 lg:h-[420px] relative">
+          <img src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&q=80&w=1200"
+               alt="Gramado Serra Gaúcha" class="w-full h-full object-cover" loading="lazy" width="1200" height="840">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          <!-- Overlay info -->
+          <div class="absolute bottom-0 left-0 right-0 p-7">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-3 py-1 text-white/90 text-xs font-semibold">
+                <i data-lucide="mountain" class="w-3.5 h-3.5"></i> Serra Gaúcha
+              </span>
+              <span class="inline-flex items-center gap-1 bg-sky-500 rounded-full px-3 py-1 text-white text-xs font-bold">
+                Pacote Aéreo Incluso
+              </span>
+            </div>
+            <h3 class="font-display font-bold text-white text-2xl lg:text-3xl mb-2">Gramado & Canela</h3>
+            <p class="text-white/80 text-sm">Hotel boutique com café colonial, passeio de trem histórico e gastronomia premium inclusos.</p>
+          </div>
+        </div>
+        <div class="p-6 flex items-center justify-between">
+          <div>
+            <p class="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-1">Parcelamento facilitado</p>
+            <p class="text-slate-800 font-bold text-sm">Em até 10x sem juros no cartão</p>
+          </div>
+          <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20cotar%20um%20pacote%20para%20Gramado/Serra%20Gaúcha."
+             target="_blank" rel="noopener noreferrer"
+             class="btn-jade relative z-10 flex items-center gap-2 text-white font-bold text-sm px-6 py-3 rounded-full">
+            <span class="relative z-10">Cotar Agora</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 relative z-10"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- Coluna direita: 2 cards menores empilhados -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+
+        <!-- Card Nordeste -->
+        <article class="card-light rounded-3xl overflow-hidden group flex-1 reveal-r" style="transition-delay:.1s">
+          <div class="dest-img h-48 lg:h-52 relative">
+            <img src="https://images.unsplash.com/photo-1563911302283-d2bc129e7570?auto=format&fit=crop&q=80&w=800"
+                 alt="Praias do Nordeste — Maceió Porto de Galinhas" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-5 right-5">
+              <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-3 py-1 text-white text-xs font-semibold mb-1.5">
+                <i data-lucide="palmtree" class="w-3.5 h-3.5"></i> Nordeste
+              </span>
+              <h3 class="font-display font-bold text-white text-xl">Maceió & Porto de Galinhas</h3>
+            </div>
+          </div>
+          <div class="p-5 flex items-center justify-between">
+            <p class="text-slate-500 text-xs">Aéreo + Transfer + Resort pé na areia</p>
+            <a href="https://wa.me/551533427717?text=Olá!%20Quero%20cotar%20um%20pacote%20para%20o%20Nordeste%20(Maceió/Porto%20de%20Galinhas)."
+               target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-1.5 text-sky-600 font-bold text-xs hover:text-sky-800 transition whitespace-nowrap">
+              Cotar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card Internacional -->
+        <article class="card-light rounded-3xl overflow-hidden group flex-1 reveal-r" style="transition-delay:.2s">
+          <div class="dest-img h-48 lg:h-52 relative">
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=800"
+                 alt="Bariloche Argentina — Internacional" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-5 right-5">
+              <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-3 py-1 text-white text-xs font-semibold mb-1.5">
+                <i data-lucide="globe" class="w-3.5 h-3.5"></i> Internacional
+              </span>
+              <h3 class="font-display font-bold text-white text-xl">Bariloche & Patagônia</h3>
+            </div>
+          </div>
+          <div class="p-5 flex items-center justify-between">
+            <p class="text-slate-500 text-xs">Seguro viagem + Assessoria documental</p>
+            <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20uma%20cotação%20para%20destino%20Internacional%20(Bariloche/Patagônia)."
+               target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-1.5 text-sky-600 font-bold text-xs hover:text-sky-800 transition whitespace-nowrap">
+              Cotar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+
+    <!-- Link "Ver todos os destinos" -->
+    <div class="mt-10 text-center reveal">
+      <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20conhecer%20todos%20os%20destinos%20disponíveis%20na%20Caminhos%20da%20Terra."
+         target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2.5 border border-slate-200 hover:border-sky-300 hover:bg-sky-50 text-slate-700 font-semibold text-sm px-7 py-3.5 rounded-full transition-all duration-300">
+        <i data-lucide="map" class="w-4 h-4 text-sky-500"></i>
+        Ver todos os destinos disponíveis
+        <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PACOTES — GRID DE 3 CARDS CLEAN
+══════════════════════════════════════════════════════ -->
+<section id="pacotes" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+      <p class="text-sky-600 text-xs font-bold uppercase tracking-widest mb-3">Nossos Pacotes</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 leading-tight mb-4">
+        Um formato para cada tipo de viajante.
+      </h2>
+      <p class="text-slate-500 text-base">Seja uma excursão de fim de semana ou um roteiro internacional completo — montamos o pacote ideal para você.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+
+      <!-- Pacote 1: Excursão Rodoviária -->
+      <div class="card-light rounded-3xl p-7 flex flex-col reveal">
+        <div class="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600 mb-5">
+          <i data-lucide="bus" class="w-6 h-6"></i>
+        </div>
+        <div class="mb-1">
+          <span class="inline-block bg-sky-50 text-sky-700 text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full">Excursão Rodoviária</span>
+        </div>
+        <h3 class="font-display font-bold text-xl text-slate-900 mt-3 mb-3">Serras, Termais & Litoral</h3>
+        <p class="text-slate-500 text-sm leading-relaxed flex-1 mb-6">
+          Saídas de Sorocaba em ônibus executivo com ar, Wi-Fi e guia Cadastur credenciado. Campos do Jordão, Caldas Novas, Aparecida e muito mais.
         </p>
-
-        <!-- CTA Duplo -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 mb-10">
-          <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20uma%20cotação%20personalizada%20de%20viagem%20com%20a%20Caminhos%20da%20Terra." 
-             target="_blank"
-             rel="noopener noreferrer"
-             class="flex items-center justify-center gap-3 bg-brand-green hover:bg-brand-green-hover text-white text-base sm:text-lg font-bold px-8 py-4 rounded-xl shadow-xl shadow-green-950/40 hover:shadow-green-950/60 transform hover:-translate-y-0.5 transition duration-200 text-center">
-            <i data-lucide="message-square" class="w-5 h-5 text-white"></i>
-            <span>Cotar Minha Viagem no WhatsApp</span>
-          </a>
-
-          <a href="#destinos" 
-             class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white text-base sm:text-lg font-semibold px-7 py-4 rounded-xl border border-white/20 backdrop-blur-md transition duration-200 text-center">
-            <span>Conhecer Pacotes</span>
-            <i data-lucide="arrow-down" class="w-4 h-4 text-brand-amber"></i>
+        <ul class="space-y-2 mb-7 text-sm">
+          <li class="flex items-center gap-2.5 text-slate-700">
+            <i data-lucide="check-circle" class="w-4 h-4 text-jade shrink-0"></i>
+            Ônibus executivo com serviço de bordo
+          </li>
+          <li class="flex items-center gap-2.5 text-slate-700">
+            <i data-lucide="check-circle" class="w-4 h-4 text-jade shrink-0"></i>
+            Guia turístico credenciado incluso
+          </li>
+          <li class="flex items-center gap-2.5 text-slate-700">
+            <i data-lucide="check-circle" class="w-4 h-4 text-jade shrink-0"></i>
+            Hotel com café da manhã incluso
+          </li>
+        </ul>
+        <div class="mt-auto">
+          <p class="text-xs text-slate-400 mb-3 font-medium">Até 10x sem juros no cartão</p>
+          <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20consultar%20excursões%20rodoviárias%20saindo%20de%20Sorocaba."
+             target="_blank" rel="noopener noreferrer"
+             class="w-full btn-jade relative flex items-center justify-center gap-2 text-white font-bold text-sm py-3.5 rounded-2xl">
+            <i data-lucide="message-circle" class="w-4 h-4 relative z-10"></i>
+            <span class="relative z-10">Cotar no WhatsApp</span>
           </a>
         </div>
+      </div>
 
-        <!-- Micro-provas rápidas no Hero -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-white/10 text-slate-300 text-xs sm:text-sm">
-          <div class="flex items-center gap-2">
-            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
-            <span>Agência Cadastrada Cadastur</span>
+      <!-- Pacote 2: Nacional (Destaque) -->
+      <div class="relative rounded-3xl overflow-hidden flex flex-col reveal shadow-xl border-2 border-sky-200 bg-gradient-to-br from-sky-600 to-sky-ocean" style="transition-delay:.1s">
+        <!-- Ribbon -->
+        <div class="absolute top-5 right-5 bg-white text-sky-700 text-[11px] font-black uppercase tracking-wide px-3 py-1 rounded-full shadow">
+          ★ Mais Pedido
+        </div>
+        <div class="p-7 flex flex-col flex-1">
+          <div class="w-12 h-12 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center text-white mb-5">
+            <i data-lucide="plane" class="w-6 h-6"></i>
           </div>
-          <div class="flex items-center gap-2">
-            <i data-lucide="credit-card" class="w-4 h-4 text-emerald-400 shrink-0"></i>
-            <span>Parcelamento facilitado em até 10x</span>
+          <div class="mb-1">
+            <span class="inline-block bg-white/20 text-white text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full border border-white/30">Pacote Nacional</span>
           </div>
-          <div class="flex items-center gap-2 col-span-2 sm:col-span-1">
-            <i data-lucide="headphones" class="w-4 h-4 text-emerald-400 shrink-0"></i>
-            <span>Suporte humanizado 24h</span>
+          <h3 class="font-display font-bold text-xl text-white mt-3 mb-3">Nordeste & Sul do Brasil</h3>
+          <p class="text-sky-100 text-sm leading-relaxed flex-1 mb-6">
+            Aéreo + resort ou pousada premium + transfer privativo. Maceió, Porto de Galinhas, Gramado, Florianópolis e os melhores destinos nacionais.
+          </p>
+          <ul class="space-y-2 mb-7 text-sm">
+            <li class="flex items-center gap-2.5 text-sky-50">
+              <i data-lucide="check-circle" class="w-4 h-4 text-green-300 shrink-0"></i>
+              Aéreo ida e volta com bagagem
+            </li>
+            <li class="flex items-center gap-2.5 text-sky-50">
+              <i data-lucide="check-circle" class="w-4 h-4 text-green-300 shrink-0"></i>
+              Transfer aeroporto/hotel com recepção
+            </li>
+            <li class="flex items-center gap-2.5 text-sky-50">
+              <i data-lucide="check-circle" class="w-4 h-4 text-green-300 shrink-0"></i>
+              Resort ou pousada premium com café
+            </li>
+          </ul>
+          <div class="mt-auto">
+            <p class="text-sky-200 text-xs mb-3 font-medium">Parcelamento facilitado até 10x</p>
+            <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20cotar%20um%20Pacote%20Nacional%20(Nordeste%20ou%20Sul%20do%20Brasil)."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full flex items-center justify-center gap-2 bg-white text-sky-700 font-bold text-sm py-3.5 rounded-2xl hover:bg-sky-50 transition shadow-lg">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              Cotar no WhatsApp
+            </a>
           </div>
         </div>
+      </div>
 
+      <!-- Pacote 3: Internacional -->
+      <div class="card-light rounded-3xl p-7 flex flex-col reveal" style="transition-delay:.2s">
+        <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600 mb-5">
+          <i data-lucide="globe" class="w-6 h-6"></i>
+        </div>
+        <div class="mb-1">
+          <span class="inline-block bg-slate-50 text-slate-700 text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full border border-slate-100">Internacional</span>
+        </div>
+        <h3 class="font-display font-bold text-xl text-slate-900 mt-3 mb-3">Santiago, Bariloche & Europa</h3>
+        <p class="text-slate-500 text-sm leading-relaxed flex-1 mb-6">
+          Roteiros internacionais com assessoria documental completa, seguro viagem incluso e suporte especializado em câmbio, vistos e conexões.
+        </p>
+        <ul class="space-y-2 mb-7 text-sm">
+          <li class="flex items-center gap-2.5 text-slate-700">
+            <i data-lucide="check-circle" class="w-4 h-4 text-jade shrink-0"></i>
+            Seguro Viagem Internacional incluso
+          </li>
+          <li class="flex items-center gap-2.5 text-slate-700">
+            <i data-lucide="check-circle" class="w-4 h-4 text-jade shrink-0"></i>
+            Assessoria em documentação e câmbio
+          </li>
+          <li class="flex items-center gap-2.5 text-slate-700">
+            <i data-lucide="check-circle" class="w-4 h-4 text-jade shrink-0"></i>
+            Suporte completo pré e durante a viagem
+          </li>
+        </ul>
+        <div class="mt-auto">
+          <p class="text-xs text-slate-400 mb-3 font-medium">Câmbio e cartão em até 10x</p>
+          <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20cotar%20um%20roteiro%20Internacional%20com%20a%20Caminhos%20da%20Terra."
+             target="_blank" rel="noopener noreferrer"
+             class="w-full btn-jade relative flex items-center justify-center gap-2 text-white font-bold text-sm py-3.5 rounded-2xl">
+            <i data-lucide="message-circle" class="w-4 h-4 relative z-10"></i>
+            <span class="relative z-10">Cotar no WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     COMO FUNCIONA — 3 PASSOS CLEAN
+══════════════════════════════════════════════════════ -->
+<section id="como-funciona" class="py-24 lg:py-32 bg-[#fafbfc] border-t border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-xl mx-auto mb-14 reveal">
+      <p class="text-sky-600 text-xs font-bold uppercase tracking-widest mb-3">Simplicidade</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 mb-4">
+        Viajar com a Caminhos da Terra é assim simples.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <div class="text-center reveal">
+        <div class="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-ocean text-white font-display font-bold text-2xl mb-5 shadow-lg shadow-sky-200">
+          01
+          <!-- Linha conectora -->
+          <span class="hidden md:block absolute left-full top-1/2 -translate-y-1/2 w-full h-px bg-gradient-to-r from-sky-200 to-transparent"></span>
+        </div>
+        <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Você escolhe o destino</h3>
+        <p class="text-slate-500 text-sm leading-relaxed max-w-xs mx-auto">Diga-nos para onde quer ir e em que datas. Se tiver dúvidas, nosso time indica as melhores opções.</p>
+      </div>
+
+      <div class="text-center reveal" style="transition-delay:.12s">
+        <div class="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-ocean text-white font-display font-bold text-2xl mb-5 shadow-lg shadow-sky-200">
+          02
+          <span class="hidden md:block absolute left-full top-1/2 -translate-y-1/2 w-full h-px bg-gradient-to-r from-sky-200 to-transparent"></span>
+        </div>
+        <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Cuidamos de tudo</h3>
+        <p class="text-slate-500 text-sm leading-relaxed max-w-xs mx-auto">Passagens, hotéis, transfers, passeios e seguro — com condições de pagamento que cabem no seu bolso.</p>
+      </div>
+
+      <div class="text-center reveal" style="transition-delay:.24s">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-jade text-white font-display font-bold text-2xl mb-5 shadow-lg shadow-green-100">
+          03
+        </div>
+        <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Você só aproveita</h3>
+        <p class="text-slate-500 text-sm leading-relaxed max-w-xs mx-auto">Embarque com tranquilidade sabendo que nosso time de 18 anos de experiência cuida de você 24h.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     DEPOIMENTOS — GOOGLE REVIEWS MODERNOS
+══════════════════════════════════════════════════════ -->
+<section id="depoimentos" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 reveal">
+      <div>
+        <p class="text-sky-600 text-xs font-bold uppercase tracking-widest mb-3">Quem Já Viajou</p>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900">O que dizem nossos<br>viajantes.</h2>
+      </div>
+      <div class="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3 shrink-0">
+        <div class="text-amber-400 text-2xl font-display font-bold">4.8</div>
+        <div>
+          <div class="text-amber-400 text-sm">★★★★★</div>
+          <p class="text-slate-500 text-xs">+880 avaliações no Google</p>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- ==================== BARRA DE PROVA SOCIAL & MÉTRICAS ==================== -->
-  <section class="bg-white border-y border-slate-200 py-10 relative z-20 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 text-center">
-        
-        <!-- Métrica 1 -->
-        <div class="flex flex-col items-center">
-          <div class="w-12 h-12 rounded-2xl bg-amber-50 text-brand-gold flex items-center justify-center mb-3">
-            <i data-lucide="calendar-check" class="w-6 h-6"></i>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+
+      <!-- Review 1 -->
+      <div class="card-light rounded-3xl p-7 flex flex-col gap-5 reveal">
+        <div class="flex items-center justify-between">
+          <div class="text-amber-400 text-sm">★★★★★</div>
+          <div class="flex items-center gap-1.5 bg-jade-pale rounded-full px-2.5 py-1">
+            <i data-lucide="badge-check" class="w-3 h-3 text-jade"></i>
+            <span class="text-[10px] font-bold text-jade uppercase tracking-wide">Verificado</span>
           </div>
-          <span class="font-heading font-black text-3xl sm:text-4xl text-brand-900 tracking-tight">18 Anos</span>
-          <span class="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wider mt-1">Desde 2008 no Mercado</span>
         </div>
-
-        <!-- Métrica 2 -->
-        <div class="flex flex-col items-center">
-          <div class="w-12 h-12 rounded-2xl bg-amber-50 text-brand-gold flex items-center justify-center mb-3">
-            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+        <p class="text-slate-600 text-sm leading-relaxed italic flex-1">
+          "Já fiz várias viagens com a Caminhos da Terra — excursões de fim de semana e pacote para o Nordeste. Atendimento impecável, guias super atenciosos. Melhor agência de Sorocaba!"
+        </p>
+        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+          <div class="w-10 h-10 rounded-full bg-sky-100 text-sky-700 font-bold text-sm flex items-center justify-center shrink-0">MS</div>
+          <div>
+            <p class="text-sm font-bold text-slate-900">Mariana Silveira</p>
+            <p class="text-xs text-slate-400">Cliente desde 2016 · há 3 meses</p>
           </div>
-          <span class="font-heading font-black text-3xl sm:text-4xl text-brand-900 tracking-tight">4.8 ★</span>
-          <span class="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wider mt-1">+880 Avaliações Google</span>
         </div>
-
-        <!-- Métrica 3 -->
-        <div class="flex flex-col items-center">
-          <div class="w-12 h-12 rounded-2xl bg-blue-50 text-brand-700 flex items-center justify-center mb-3">
-            <i data-lucide="users" class="w-6 h-6"></i>
-          </div>
-          <span class="font-heading font-black text-3xl sm:text-4xl text-brand-900 tracking-tight">+50.000</span>
-          <span class="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wider mt-1">Passageiros Embarcados</span>
-        </div>
-
-        <!-- Métrica 4 -->
-        <div class="flex flex-col items-center">
-          <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
-            <i data-lucide="check-check" class="w-6 h-6"></i>
-          </div>
-          <span class="font-heading font-black text-3xl sm:text-4xl text-brand-900 tracking-tight">100%</span>
-          <span class="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wider mt-1">Assistência e Segurança</span>
-        </div>
-
       </div>
-    </div>
-  </section>
 
-  <!-- ==================== CATÁLOGO DE DESTINOS POPULARES ==================== -->
-  <section id="destinos" class="py-20 lg:py-28 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Cabeçalho da Seção -->
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="inline-block text-xs uppercase tracking-widest font-extrabold text-brand-gold bg-amber-100/60 px-3.5 py-1.5 rounded-full mb-3">
-          Experiências Selecionadas
-        </span>
-        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-brand-900 tracking-tight mb-4">
-          Escolha a sua próxima parada dos sonhos
+      <!-- Review 2 -->
+      <div class="card-light rounded-3xl p-7 flex flex-col gap-5 reveal" style="transition-delay:.1s">
+        <div class="flex items-center justify-between">
+          <div class="text-amber-400 text-sm">★★★★★</div>
+          <div class="flex items-center gap-1.5 bg-jade-pale rounded-full px-2.5 py-1">
+            <i data-lucide="badge-check" class="w-3 h-3 text-jade"></i>
+            <span class="text-[10px] font-bold text-jade uppercase tracking-wide">Verificado</span>
+          </div>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed italic flex-1">
+          "Fomos em família para Maceió — hotel pé na areia, traslados pontuais e zero preocupação. Com 18 anos de mercado, a agência passa segurança que dinheiro nenhum compra."
+        </p>
+        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+          <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-700 font-bold text-sm flex items-center justify-center shrink-0">RC</div>
+          <div>
+            <p class="text-sm font-bold text-slate-900">Roberto Cardoso</p>
+            <p class="text-xs text-slate-400">Avaliação Google · há 5 meses</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="card-light rounded-3xl p-7 flex flex-col gap-5 reveal" style="transition-delay:.2s">
+        <div class="flex items-center justify-between">
+          <div class="text-amber-400 text-sm">★★★★★</div>
+          <div class="flex items-center gap-1.5 bg-jade-pale rounded-full px-2.5 py-1">
+            <i data-lucide="badge-check" class="w-3 h-3 text-jade"></i>
+            <span class="text-[10px] font-bold text-jade uppercase tracking-wide">Verificado</span>
+          </div>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed italic flex-1">
+          "Excursão para Caldas Novas perfeita do início ao fim! Ônibus super confortável, hotel excelente e passeios incríveis. Já estamos planejando a próxima com a Caminhos!"
+        </p>
+        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+          <div class="w-10 h-10 rounded-full bg-green-100 text-green-700 font-bold text-sm flex items-center justify-center shrink-0">FA</div>
+          <div>
+            <p class="text-sm font-bold text-slate-900">Fátima Alencar</p>
+            <p class="text-xs text-slate-400">Excursão Rodoviária · há 1 mês</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     FAQ — ACCORDION CLEAN AREJADO
+══════════════════════════════════════════════════════ -->
+<section id="faq" class="py-24 lg:py-32 bg-[#fafbfc] border-t border-slate-100">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-14 reveal">
+      <p class="text-sky-600 text-xs font-bold uppercase tracking-widest mb-3">Dúvidas Frequentes</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900">Tudo que você precisa<br>saber antes de embarcar.</h2>
+    </div>
+
+    <div id="faq-wrap" class="space-y-3 reveal">
+
+      <div class="faq-item bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-sky-200 transition">
+        <button class="faq-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left focus:outline-none">
+          <span class="font-semibold text-slate-800 text-sm sm:text-base">Quais são as formas de pagamento?</span>
+          <i data-lucide="plus" class="faq-icon w-5 h-5 text-sky-500 shrink-0"></i>
+        </button>
+        <div class="faq-body px-6 text-slate-500 text-sm leading-relaxed">
+          Parcelamos em até 10x sem juros no cartão, além de Pix, boleto parcelado e entrada facilitada. Nosso time apresenta todas as simulações no seu orçamento.
+        </div>
+      </div>
+
+      <div class="faq-item bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-sky-200 transition">
+        <button class="faq-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left focus:outline-none">
+          <span class="font-semibold text-slate-800 text-sm sm:text-base">De onde partem as excursões rodoviárias?</span>
+          <i data-lucide="plus" class="faq-icon w-5 h-5 text-sky-500 shrink-0"></i>
+        </button>
+        <div class="faq-body px-6 text-slate-500 text-sm leading-relaxed">
+          Ponto de embarque central em Sorocaba/SP, com eventuais pontos de apoio combinados. Todos os horários e locais são confirmados no voucher digital.
+        </div>
+      </div>
+
+      <div class="faq-item bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-sky-200 transition">
+        <button class="faq-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left focus:outline-none">
+          <span class="font-semibold text-slate-800 text-sm sm:text-base">As excursões têm guia de turismo credenciado?</span>
+          <i data-lucide="plus" class="faq-icon w-5 h-5 text-sky-500 shrink-0"></i>
+        </button>
+        <div class="faq-body px-6 text-slate-500 text-sm leading-relaxed">
+          Sim! Guias credenciados pelo Ministério do Turismo (Cadastur) acompanham todas as nossas excursões, garantindo suporte e segurança total.
+        </div>
+      </div>
+
+      <div class="faq-item bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-sky-200 transition">
+        <button class="faq-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left focus:outline-none">
+          <span class="font-semibold text-slate-800 text-sm sm:text-base">Há suporte durante toda a viagem?</span>
+          <i data-lucide="plus" class="faq-icon w-5 h-5 text-sky-500 shrink-0"></i>
+        </button>
+        <div class="faq-body px-6 text-slate-500 text-sm leading-relaxed">
+          Sim. Canal direto via WhatsApp 24h durante toda a viagem — nacional ou internacional — com assistência em check-ins, voos e imprevistos.
+        </div>
+      </div>
+
+      <div class="faq-item bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-sky-200 transition">
+        <button class="faq-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left focus:outline-none">
+          <span class="font-semibold text-slate-800 text-sm sm:text-base">Posso visitar a loja em Sorocaba?</span>
+          <i data-lucide="plus" class="faq-icon w-5 h-5 text-sky-500 shrink-0"></i>
+        </button>
+        <div class="faq-body px-6 text-slate-500 text-sm leading-relaxed">
+          Com prazer! Estamos na <strong class="text-slate-700">Rua Padre Luiz, 663 — Centro, Sorocaba/SP</strong>. Venha tomar um café e planejar sua viagem ao vivo com nossos consultores.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     FORMULÁRIO + CONTATO — FUNDO CLARO
+══════════════════════════════════════════════════════ -->
+<section id="contato" class="py-24 lg:py-32 bg-white border-t border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
+
+      <!-- Esquerda: argumentos + dados -->
+      <div class="lg:col-span-5 reveal-l">
+        <p class="text-sky-600 text-xs font-bold uppercase tracking-widest mb-3">Fale com um Especialista</p>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 leading-tight mb-6">
+          Vamos planejar o roteiro perfeito para você.
         </h2>
-        <p class="text-base sm:text-lg text-slate-600">
-          De escapadas revigorantes de fim de semana até roteiros internacionais inesquecíveis, com todo suporte e conforto que você merece.
+        <p class="text-slate-500 leading-relaxed mb-10">
+          Preencha os dados ao lado. Nossa equipe retorna com uma cotação completa — normalmente em menos de 2 horas.
         </p>
+
+        <div class="space-y-5">
+          <div class="flex items-center gap-4">
+            <div class="w-11 h-11 shrink-0 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-0.5">Endereço Físico</p>
+              <p class="text-sm text-slate-700 font-medium">Rua Padre Luiz, 663 — Centro, Sorocaba/SP</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-11 h-11 shrink-0 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600">
+              <i data-lucide="phone" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-0.5">Telefone & WhatsApp</p>
+              <a href="tel:+551533427717" class="text-sm text-slate-700 font-semibold hover:text-sky-600 transition">(15) 3342-7717</a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-11 h-11 shrink-0 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600">
+              <i data-lucide="clock" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-0.5">Horário</p>
+              <p class="text-sm text-slate-700 font-medium">Seg–Sex: 09h às 18h · Sáb com agendamento</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Grid de Pacotes (3 Cards) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <!-- CARD 1: Excursão Rodoviária -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-lg shadow-slate-200/70 border border-slate-100 flex flex-col hover:-translate-y-1.5 transition-all duration-300 group">
-          <div class="relative h-64 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800" 
-                 alt="Excursão Rodoviária Conforto" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 left-4 bg-brand-900/90 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-              Excursão Rodoviária
-            </div>
-            <div class="absolute bottom-3 right-3 bg-white/95 text-brand-900 text-xs font-bold px-2.5 py-1 rounded-lg shadow">
-              Saídas de Sorocaba
-            </div>
-          </div>
+      <!-- Direita: formulário -->
+      <div class="lg:col-span-7 reveal-r">
+        <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-10 shadow-xl shadow-slate-100">
+          <h3 class="font-display font-bold text-2xl text-slate-900 mb-1">Solicitar Cotação Rápida</h3>
+          <p class="text-slate-400 text-sm mb-7">Ao enviar, abriremos o WhatsApp já com os seus dados.</p>
 
-          <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+          <form id="lead-form" novalidate class="space-y-4">
             <div>
-              <div class="flex items-center gap-1.5 text-brand-gold mb-2">
-                <i data-lucide="bus" class="w-4 h-4"></i>
-                <span class="text-xs font-bold uppercase tracking-wider">Conforto & Praticidade</span>
+              <label for="f-name" class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1.5">Nome Completo *</label>
+              <input id="f-name" type="text" required placeholder="Ex: Maria Silva"
+                     class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 transition">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="f-phone" class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1.5">WhatsApp *</label>
+                <input id="f-phone" type="tel" required placeholder="(15) 99999-9999"
+                       class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 transition">
               </div>
-              <h3 class="font-heading font-bold text-2xl text-brand-900 mb-2">
-                Serras, Águas Termais & Litoral
-              </h3>
-              <p class="text-slate-600 text-sm mb-6 leading-relaxed">
-                Roteiros perfeitos para relaxar: Campos do Jordão, Serra Negra, Caldas Novas e Aparecida. Ônibus leito/semi-leito com serviço de bordo, guia credenciado e hospedagem inclusa.
-              </p>
-              
-              <!-- Inclusos -->
-              <ul class="space-y-2 mb-6 text-xs sm:text-sm text-slate-700">
-                <li class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                  <span>Transporte Executivo com ar e Wi-Fi</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                  <span>Guia acompanhante desde Sorocaba</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                  <span>Hotéis selecionados com café da manhã</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="pt-4 border-t border-slate-100">
-              <div class="flex items-baseline justify-between mb-4">
-                <span class="text-xs text-slate-500 font-medium">Condições facilitadas:</span>
-                <span class="text-xs font-bold text-brand-900 bg-slate-100 px-2.5 py-1 rounded-md">Até 10x sem juros</span>
+              <div>
+                <label for="f-dest" class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1.5">Destino Desejado *</label>
+                <input id="f-dest" type="text" required placeholder="Ex: Maceió, Gramado…"
+                       class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 transition">
               </div>
-              <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20consultar%20as%20próximas%20saídas%20de%20Excursões%20Rodoviárias." 
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="w-full flex items-center justify-center gap-2 bg-brand-green hover:bg-brand-green-hover text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition duration-200 text-sm">
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span>Cotar Excursão no WhatsApp</span>
-              </a>
             </div>
-          </div>
-        </div>
 
-        <!-- CARD 2: Pacote Nacional (Destaque) -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-xl shadow-amber-900/10 border-2 border-brand-gold/60 flex flex-col hover:-translate-y-1.5 transition-all duration-300 group relative">
-          <div class="absolute top-0 right-0 bg-brand-gold text-brand-900 text-xs font-black uppercase tracking-wider px-4 py-1.5 rounded-bl-xl z-10 shadow">
-            Mais Procurado
-          </div>
-          
-          <div class="relative h-64 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&q=80&w=800" 
-                 alt="Pacotes Nacionais Nordeste e Sul" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 left-4 bg-brand-900/90 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-              Pacote Nacional
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="f-type" class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1.5">Tipo de Viagem</label>
+                <select id="f-type"
+                        class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 transition appearance-none">
+                  <option>Excursão Rodoviária</option>
+                  <option>Pacote Nacional (Aéreo)</option>
+                  <option>Viagem Internacional</option>
+                  <option>Roteiro de Grupo / Família</option>
+                </select>
+              </div>
+              <div>
+                <label for="f-date" class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1.5">Previsão de Data</label>
+                <input id="f-date" type="text" placeholder="Ex: Julho / Dezembro"
+                       class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-300 transition">
+              </div>
             </div>
-          </div>
 
-          <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center gap-1.5 text-brand-gold mb-2">
-                <i data-lucide="palmtree" class="w-4 h-4"></i>
-                <span class="text-xs font-bold uppercase tracking-wider">Nordeste, Sul & Praias</span>
-              </div>
-              <h3 class="font-heading font-bold text-2xl text-brand-900 mb-2">
-                Maceió, Porto de Galinhas & Gramado
-              </h3>
-              <p class="text-slate-600 text-sm mb-6 leading-relaxed">
-                As melhores praias do Nordeste ou o charme da Serra Gaúcha com pacotes completos: passagens aéreas, transfer privativo, hospedagens de alto padrão e passeios exclusivos.
-              </p>
-              
-              <!-- Inclusos -->
-              <ul class="space-y-2 mb-6 text-xs sm:text-sm text-slate-700">
-                <li class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                  <span>Aéreo ida e volta com bagagem</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                  <span>Transfer aeroporto / hotel com recepção</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                  <span>Resorts ou pousadas premium com café</span>
-                </li>
-              </ul>
+              <label for="f-notes" class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1.5">Pessoas / Observações</label>
+              <textarea id="f-notes" rows="2" placeholder="Ex: 2 adultos e 1 criança de 7 anos…"
+                        class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-300 transition resize-none"></textarea>
             </div>
 
-            <div class="pt-4 border-t border-slate-100">
-              <div class="flex items-baseline justify-between mb-4">
-                <span class="text-xs text-slate-500 font-medium">Condições facilitadas:</span>
-                <span class="text-xs font-bold text-brand-900 bg-slate-100 px-2.5 py-1 rounded-md">Parcelamento em até 10x</span>
-              </div>
-              <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20solicitar%20uma%20cotação%20para%20Pacotes%20Nacionais%20(Praias/Sul)." 
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="w-full flex items-center justify-center gap-2 bg-brand-green hover:bg-brand-green-hover text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition duration-200 text-sm">
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span>Cotar Pacote Nacional</span>
-              </a>
-            </div>
-          </div>
+            <button type="submit"
+                    class="btn-jade relative w-full flex items-center justify-center gap-2.5 text-white font-bold text-base py-4 rounded-2xl shadow-lg">
+              <i data-lucide="send" class="w-5 h-5 relative z-10"></i>
+              <span class="relative z-10">Enviar e Abrir no WhatsApp</span>
+            </button>
+
+            <p class="text-center text-[11px] text-slate-400 flex items-center justify-center gap-1.5">
+              <i data-lucide="lock" class="w-3 h-3 text-jade"></i>
+              Dados protegidos. Sem spam, jamais.
+            </p>
+          </form>
         </div>
-
-        <!-- CARD 3: Destino Internacional -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-lg shadow-slate-200/70 border border-slate-100 flex flex-col hover:-translate-y-1.5 transition-all duration-300 group">
-          <div class="relative h-64 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&q=80&w=800" 
-                 alt="Viagens Internacionais América do Sul e Europa" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 left-4 bg-brand-900/90 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-              Internacional
-            </div>
-          </div>
-
-          <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-1.5 text-brand-gold mb-2">
-                <i data-lucide="globe" class="w-4 h-4"></i>
-                <span class="text-xs font-bold uppercase tracking-wider">Mundo Sem Fronteiras</span>
-              </div>
-              <h3 class="font-heading font-bold text-2xl text-brand-900 mb-2">
-                Santiago, Buenos Aires & Europa
-              </h3>
-              <p class="text-slate-600 text-sm mb-6 leading-relaxed">
-                Roteiros internacionais com assessoria documental completa, seguro viagem internacional incluso, voos operados pelas maiores companhias e assistência para câmbio e imigração.
-              </p>
-              
-              <!-- Inclusos -->
-              <ul class="space-y-2 mb-6 text-xs sm:text-sm text-slate-700">
-                <li class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                  <span>Seguro Viagem Internacional incluso</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                  <span>Suporte completo pré e durante o embarque</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                  <span>Roteiro personalizado e dicas locais</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="pt-4 border-t border-slate-100">
-              <div class="flex items-baseline justify-between mb-4">
-                <span class="text-xs text-slate-500 font-medium">Condições facilitadas:</span>
-                <span class="text-xs font-bold text-brand-900 bg-slate-100 px-2.5 py-1 rounded-md">Câmbio e Cartão em até 10x</span>
-              </div>
-              <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20uma%20cotação%20para%20viagem%20Internacional%20com%20a%20Caminhos%20da%20Terra." 
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="w-full flex items-center justify-center gap-2 bg-brand-green hover:bg-brand-green-hover text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition duration-200 text-sm">
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span>Cotar Internacional</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Caixa de Solicitação Personalizada -->
-      <div class="mt-14 bg-gradient-to-r from-brand-900 to-brand-800 rounded-3xl p-8 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-        <div class="max-w-2xl text-center md:text-left">
-          <h4 class="font-heading font-bold text-2xl text-white mb-2">Procurando outro destino ou grupo exclusivo?</h4>
-          <p class="text-slate-300 text-sm sm:text-base">Montamos roteiros sob medida para famílias, empresas, escolas ou grupos de amigos saindo de Sorocaba e região.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER CLEAN
+══════════════════════════════════════════════════════ -->
+<footer class="bg-slate-900 text-slate-400 pt-16 pb-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/[0.06]">
+
+      <div>
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="w-8 h-8 rounded-xl bg-sky-600/20 border border-sky-500/30 flex items-center justify-center text-sky-400">
+            <i data-lucide="compass" class="w-4 h-4"></i>
+          </div>
+          <span class="font-display font-bold text-white text-[15px]">Caminhos da Terra</span>
         </div>
-        <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20montar%20um%20roteiro%20personalizado%20para%20um%20grupo/família." 
-           target="_blank"
-           rel="noopener noreferrer"
-           class="whitespace-nowrap bg-brand-amber hover:bg-amber-400 text-brand-900 font-extrabold text-sm sm:text-base px-7 py-4 rounded-xl transition duration-200 shadow-lg">
-          Falar com Especialista
+        <p class="text-xs leading-relaxed mb-4">Desde 2008 realizando sonhos. Excursões, pacotes nacionais e internacionais com tradição e cuidado em Sorocaba/SP.</p>
+        <span class="inline-flex items-center gap-1.5 text-xs text-sky-400 font-semibold">
+          <i data-lucide="award" class="w-3.5 h-3.5"></i> +18 Anos · Cadastur Regularizado
+        </span>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-5">Navegação</h4>
+        <ul class="space-y-2.5 text-xs">
+          <li><a href="#destinos"      class="hover:text-sky-400 transition">Destinos</a></li>
+          <li><a href="#pacotes"       class="hover:text-sky-400 transition">Nossos Pacotes</a></li>
+          <li><a href="#como-funciona" class="hover:text-sky-400 transition">Como Funciona</a></li>
+          <li><a href="#depoimentos"   class="hover:text-sky-400 transition">Avaliações</a></li>
+          <li><a href="#faq"           class="hover:text-sky-400 transition">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-5">Contato</h4>
+        <address class="not-italic text-xs space-y-2.5">
+          <p class="text-slate-300 font-medium">Rua Padre Luiz, 663 — Centro<br>Sorocaba - SP</p>
+          <a href="https://wa.me/551533427717" class="text-sky-400 hover:text-sky-300 transition block">(15) 3342-7717 · WhatsApp</a>
+          <p>Seg a Sex: 09h às 18h</p>
+        </address>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-5">Como Chegar</h4>
+        <div class="w-full h-36 rounded-2xl overflow-hidden border border-white/[0.07]">
+          <iframe title="Localização Caminhos da Terra"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.7466810280456!2d-47.4589998!3d-23.5015383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c58a946b5a8e03%3A0xc3b83b320d771801!2sR.%20Padre%20Luiz%2C%20663%20-%20Centro%2C%20Sorocaba%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-500">
+          </iframe>
+        </div>
+        <a href="https://maps.google.com/?q=Rua+Padre+Luiz+663+Centro+Sorocaba+SP" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1 text-[11px] text-sky-400 hover:text-sky-300 transition mt-2">
+          <i data-lucide="external-link" class="w-3 h-3"></i> Abrir no Google Maps
         </a>
       </div>
 
     </div>
-  </section>
 
-  <!-- ==================== COMO FUNCIONA (A JORNADA DO CLIENTE) ==================== -->
-  <section id="como-funciona" class="py-20 lg:py-28 bg-white border-t border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="inline-block text-xs uppercase tracking-widest font-extrabold text-brand-gold bg-amber-100/60 px-3.5 py-1.5 rounded-full mb-3">
-          Simplicidade & Segurança
-        </span>
-        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-brand-900 tracking-tight mb-4">
-          Viajar com a Caminhos da Terra é assim:
-        </h2>
-        <p class="text-base sm:text-lg text-slate-600">
-          Você não precisa perder noites pesquisando centenas de hotéis ou se preocupando com conexões. Cuidamos de cada detalhe.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-        
-        <!-- Passo 1 -->
-        <div class="relative bg-slate-50 rounded-3xl p-8 border border-slate-100 flex flex-col items-center text-center">
-          <div class="w-16 h-16 rounded-2xl bg-brand-900 text-brand-amber font-heading font-black text-2xl flex items-center justify-center mb-6 shadow-md shadow-brand-900/10">
-            01
-          </div>
-          <h3 class="font-heading font-bold text-xl text-brand-900 mb-3">Você escolhe o destino</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Diga-nos para onde deseja ir, suas datas preferidas e quem vai com você. Se estiver em dúvida, nosso time indica as melhores opções pelo melhor custo-benefício.
-          </p>
-        </div>
-
-        <!-- Passo 2 -->
-        <div class="relative bg-slate-50 rounded-3xl p-8 border border-slate-100 flex flex-col items-center text-center">
-          <div class="w-16 h-16 rounded-2xl bg-brand-gold text-white font-heading font-black text-2xl flex items-center justify-center mb-6 shadow-md shadow-amber-600/20">
-            02
-          </div>
-          <h3 class="font-heading font-bold text-xl text-brand-900 mb-3">Cuidamos de tudo</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Emitimos passagens, reservamos hotéis de confiança, organizamos traslados, passeios e seguro. Tudo com condições de pagamento que cabem no seu bolso.
-          </p>
-        </div>
-
-        <!-- Passo 3 -->
-        <div class="relative bg-slate-50 rounded-3xl p-8 border border-slate-100 flex flex-col items-center text-center">
-          <div class="w-16 h-16 rounded-2xl bg-brand-green text-white font-heading font-black text-2xl flex items-center justify-center mb-6 shadow-md shadow-green-600/20">
-            03
-          </div>
-          <h3 class="font-heading font-bold text-xl text-brand-900 mb-3">Você só aproveita</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Embarque com tranquilidade sabendo que possui um time com 18 anos de bagagem e suporte 24h cuidando de você durante toda a sua viagem.
-          </p>
-        </div>
-
-      </div>
-
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-600">
+      <p>© 2008 – 2026 Caminhos da Terra — Viagens e Turismo. Todos os direitos reservados.</p>
+      <p>Sorocaba/SP · (15) 3342-7717</p>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <!-- ==================== PROVA SOCIAL ESTENDIDA (DEPOIMENTOS GOOGLE REVIEWS) ==================== -->
-  <section id="depoimentos" class="py-20 lg:py-28 bg-slate-50 border-t border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <div class="inline-flex items-center gap-1.5 text-brand-gold bg-amber-100/70 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
-          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-          <span>Google Reviews • 4.8 / 5.0 (+880 avaliações)</span>
-        </div>
-        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-brand-900 tracking-tight mb-4">
-          Quem viaja conosco recomenda
-        </h2>
-        <p class="text-base sm:text-lg text-slate-600">
-          Veja a experiência real de viajantes de Sorocaba e região que confiam suas férias à Caminhos da Terra.
-        </p>
-      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Depoimento 1 -->
-        <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-md flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-1 text-amber-400 mb-4">
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-            </div>
-            <p class="text-slate-700 text-sm sm:text-base italic leading-relaxed mb-6">
-              "Já fiz várias viagens com a Caminhos da Terra, tanto excursões de final de semana quanto viagens para o Nordeste. O atendimento na agência no Centro de Sorocaba é impecável, motoristas e guias super atenciosos!"
-            </p>
-          </div>
-          <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
-            <div class="w-10 h-10 rounded-full bg-brand-900 text-white font-bold flex items-center justify-center text-sm">
-              MS
-            </div>
-            <div>
-              <h5 class="font-heading font-bold text-sm text-brand-900">Mariana Silveira</h5>
-              <span class="text-xs text-slate-500">Cliente desde 2016 • Sorocaba/SP</span>
-            </div>
-          </div>
-        </div>
+<!-- ══════════════════════════════════════════════════════
+     WHATSAPP FLUTUANTE + BALÃO (5s delay)
+══════════════════════════════════════════════════════ -->
+<div class="fixed bottom-6 right-5 z-50 flex flex-col items-end gap-3">
 
-        <!-- Depoimento 2 -->
-        <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-md flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-1 text-amber-400 mb-4">
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-            </div>
-            <p class="text-slate-700 text-sm sm:text-base italic leading-relaxed mb-6">
-              "Sensacional! Viajamos em família para Maceió. Hotel pé na areia espetacular, traslados pontuais e sem nenhuma dor de cabeça. Fazer com uma agência com 18 anos de história faz toda a diferença para nossa paz de espírito."
-            </p>
-          </div>
-          <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
-            <div class="w-10 h-10 rounded-full bg-brand-gold text-brand-900 font-bold flex items-center justify-center text-sm">
-              RC
-            </div>
-            <div>
-              <h5 class="font-heading font-bold text-sm text-brand-900">Roberto Cardoso</h5>
-              <span class="text-xs text-slate-500">Avaliação verificada no Google</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Depoimento 3 -->
-        <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-md flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-1 text-amber-400 mb-4">
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-            </div>
-            <p class="text-slate-700 text-sm sm:text-base italic leading-relaxed mb-6">
-              "Melhor agência de viagens da região. Fizemos a excursão para Caldas Novas e tudo foi maravilhoso, desde o ônibus super confortável até a programação no hotel. Já estamos escolhendo a próxima viagem!"
-            </p>
-          </div>
-          <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
-            <div class="w-10 h-10 rounded-full bg-brand-green text-white font-bold flex items-center justify-center text-sm">
-              FA
-            </div>
-            <div>
-              <h5 class="font-heading font-bold text-sm text-brand-900">Fátima Alencar</h5>
-              <span class="text-xs text-slate-500">Excursão Rodoviária • Sorocaba/SP</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
+  <!-- Balão -->
+  <div id="wa-balloon" class="bg-white border border-slate-200 shadow-2xl rounded-2xl rounded-br-sm px-4 py-3 max-w-[230px] flex items-start gap-3">
+    <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0 mt-0.5">
+      <svg class="w-4 h-4 fill-green-600" viewBox="0 0 32 32"><path d="M16.003 2.667C8.636 2.667 2.667 8.636 2.667 16c0 2.355.625 4.663 1.813 6.68L2.667 29.333l6.847-1.779A13.28 13.28 0 0 0 16.003 29.333C23.369 29.333 29.333 23.364 29.333 16c0-7.367-5.964-13.333-13.33-13.333zm5.851 18.025c-.32-.16-1.896-.934-2.19-1.04-.294-.107-.508-.16-.722.16-.214.32-.828 1.04-.1015 1.28-.187.24-.373.267-.694.107-.32-.16-1.352-.499-2.576-1.588-.952-.848-1.594-1.895-1.781-2.216-.187-.32-.02-.493.14-.652.144-.143.32-.373.48-.56.16-.186.213-.32.32-.533.107-.214.053-.4-.027-.56-.08-.16-.722-1.734-.987-2.374-.26-.623-.525-.538-.722-.548l-.614-.01c-.213 0-.56.08-.853.4-.294.32-1.12 1.094-1.12 2.667s1.147 3.094 1.307 3.308c.16.213 2.256 3.44 5.467 4.826.764.33 1.36.527 1.824.674.766.244 1.464.21 2.015.127.615-.092 1.896-.775 2.164-1.524.267-.747.267-1.387.187-1.52-.08-.134-.294-.214-.614-.374z"/></svg>
     </div>
-  </section>
-
-  <!-- ==================== FAQ (DÚVIDAS FREQUENTES COM ACCORDION) ==================== -->
-  <section id="faq" class="py-20 lg:py-28 bg-white border-t border-slate-200">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center mb-14">
-        <span class="inline-block text-xs uppercase tracking-widest font-extrabold text-brand-gold bg-amber-100/60 px-3.5 py-1.5 rounded-full mb-3">
-          Tire suas Dúvidas
-        </span>
-        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-brand-900 tracking-tight mb-4">
-          Perguntas Frequentes
-        </h2>
-        <p class="text-slate-600">
-          Transparência total em cada etapa do seu pacote ou excursão.
-        </p>
-      </div>
-
-      <div class="space-y-4" id="faq-accordion">
-        
-        <!-- Pergunta 1 -->
-        <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden transition">
-          <button class="faq-toggle w-full flex items-center justify-between p-5 sm:p-6 text-left bg-slate-50 hover:bg-slate-100 transition focus:outline-none">
-            <span class="font-heading font-bold text-base sm:text-lg text-brand-900">Quais são as formas e condições de pagamento?</span>
-            <i data-lucide="chevron-down" class="faq-arrow w-5 h-5 text-slate-500 transition-transform duration-200 shrink-0 ml-4"></i>
-          </button>
-          <div class="faq-content hidden p-5 sm:p-6 bg-white text-slate-600 text-sm sm:text-base border-t border-slate-100 leading-relaxed">
-            Facilitamos o pagamento em até 10x sem juros no cartão de crédito, além de condições especiais via Pix, boleto bancário parcelado para datas programadas ou entrada facilitada. Nossa equipe detalha todas as simulações no seu orçamento.
-          </div>
-        </div>
-
-        <!-- Pergunta 2 -->
-        <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden transition">
-          <button class="faq-toggle w-full flex items-center justify-between p-5 sm:p-6 text-left bg-slate-50 hover:bg-slate-100 transition focus:outline-none">
-            <span class="font-heading font-bold text-base sm:text-lg text-brand-900">De onde saem as excursões rodoviárias?</span>
-            <i data-lucide="chevron-down" class="faq-arrow w-5 h-5 text-slate-500 transition-transform duration-200 shrink-0 ml-4"></i>
-          </button>
-          <div class="faq-content hidden p-5 sm:p-6 bg-white text-slate-600 text-sm sm:text-base border-t border-slate-100 leading-relaxed">
-            Nossas excursões rodoviárias têm embarque principal com ponto de encontro seguro e central em Sorocaba/SP, além de eventuais pontos de apoio combinados ao longo do trajeto (como Votorantim ou rodovias de acesso). Todos os horários e locais exatos são informados previamente no seu voucher.
-          </div>
-        </div>
-
-        <!-- Pergunta 3 -->
-        <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden transition">
-          <button class="faq-toggle w-full flex items-center justify-between p-5 sm:p-6 text-left bg-slate-50 hover:bg-slate-100 transition focus:outline-none">
-            <span class="font-heading font-bold text-base sm:text-lg text-brand-900">As excursões contam com guia de turismo credenciado?</span>
-            <i data-lucide="chevron-down" class="faq-arrow w-5 h-5 text-slate-500 transition-transform duration-200 shrink-0 ml-4"></i>
-          </button>
-          <div class="faq-content hidden p-5 sm:p-6 bg-white text-slate-600 text-sm sm:text-base border-t border-slate-100 leading-relaxed">
-            Sim! Em todas as nossas excursões você é acompanhado por guias credenciados pelo Ministério do Turismo (CADASTUR), garantindo total apoio, informações históricas sobre os pontos turísticos e suporte contínuo para o grupo.
-          </div>
-        </div>
-
-        <!-- Pergunta 4 -->
-        <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden transition">
-          <button class="faq-toggle w-full flex items-center justify-between p-5 sm:p-6 text-left bg-slate-50 hover:bg-slate-100 transition focus:outline-none">
-            <span class="font-heading font-bold text-base sm:text-lg text-brand-900">A agência oferece suporte durante a viagem?</span>
-            <i data-lucide="chevron-down" class="faq-arrow w-5 h-5 text-slate-500 transition-transform duration-200 shrink-0 ml-4"></i>
-          </button>
-          <div class="faq-content hidden p-5 sm:p-6 bg-white text-slate-600 text-sm sm:text-base border-t border-slate-100 leading-relaxed">
-            Com certeza. Você terá canal direto de suporte e emergência no WhatsApp 24 horas durante todo o período da sua viagem (seja rodoviária, aérea nacional ou internacional), prestando assistência em check-ins, voos e dúvidas.
-          </div>
-        </div>
-
-        <!-- Pergunta 5 -->
-        <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden transition">
-          <button class="faq-toggle w-full flex items-center justify-between p-5 sm:p-6 text-left bg-slate-50 hover:bg-slate-100 transition focus:outline-none">
-            <span class="font-heading font-bold text-base sm:text-lg text-brand-900">Posso visitar a loja física em Sorocaba?</span>
-            <i data-lucide="chevron-down" class="faq-arrow w-5 h-5 text-slate-500 transition-transform duration-200 shrink-0 ml-4"></i>
-          </button>
-          <div class="faq-content hidden p-5 sm:p-6 bg-white text-slate-600 text-sm sm:text-base border-t border-slate-100 leading-relaxed">
-            Será um prazer recebê-lo! Estamos localizados na Rua Padre Luiz, 663 - Centro, Sorocaba/SP. Venha tomar um café conosco e planejar cada detalhe do seu roteiro ao vivo com nossos consultores.
-          </div>
-        </div>
-
-      </div>
-
+    <div class="flex-1">
+      <p class="text-xs font-semibold text-slate-800">Dúvidas sobre destinos?</p>
+      <p class="text-[11px] text-slate-500">Fale conosco agora online!</p>
     </div>
-  </section>
+    <button id="balloon-close" class="text-slate-400 hover:text-slate-600 transition -mt-0.5" aria-label="Fechar">
+      <i data-lucide="x" class="w-3.5 h-3.5"></i>
+    </button>
+  </div>
 
-  <!-- ==================== FORMULÁRIO DE CONTATO FUNCIONAL ==================== -->
-  <section id="contato" class="py-20 lg:py-28 bg-brand-900 relative overflow-hidden text-white">
-    <!-- Efeitos de iluminação de fundo -->
-    <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <!-- Lado Esquerdo: Argumentos Comerciais -->
-        <div class="lg:col-span-5">
-          <span class="inline-block text-xs uppercase tracking-widest font-extrabold text-amber-300 bg-white/10 px-3.5 py-1.5 rounded-full mb-4">
-            Atendimento Personalizado
-          </span>
-          <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white mb-6">
-            Vamos planejar seu próximo embarque?
-          </h2>
-          <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
-            Preencha os dados e receba uma cotação rápida e sem compromisso. Nosso time de especialistas está pronto para apresentar as melhores datas e condições.
-          </p>
-
-          <div class="space-y-4">
-            <div class="flex items-start gap-3.5">
-              <div class="w-10 h-10 rounded-xl bg-brand-800 flex items-center justify-center text-brand-amber shrink-0 border border-white/10">
-                <i data-lucide="map-pin" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <h4 class="font-heading font-bold text-base text-white">Endereço Físico</h4>
-                <p class="text-slate-300 text-sm">Rua Padre Luiz, 663 - Centro, Sorocaba/SP</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3.5">
-              <div class="w-10 h-10 rounded-xl bg-brand-800 flex items-center justify-center text-brand-amber shrink-0 border border-white/10">
-                <i data-lucide="phone" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <h4 class="font-heading font-bold text-base text-white">Telefone & WhatsApp</h4>
-                <p class="text-slate-300 text-sm">(15) 3342-7717</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3.5">
-              <div class="w-10 h-10 rounded-xl bg-brand-800 flex items-center justify-center text-brand-amber shrink-0 border border-white/10">
-                <i data-lucide="clock" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <h4 class="font-heading font-bold text-base text-white">Horário de Funcionamento</h4>
-                <p class="text-slate-300 text-sm">Segunda a Sexta: 09h às 18h | Sábados com agendamento</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Lado Direito: Formulário que envia direto para o WhatsApp -->
-        <div class="lg:col-span-7">
-          <div class="bg-white rounded-3xl p-8 sm:p-10 text-slate-800 shadow-2xl">
-            <div class="mb-6">
-              <h3 class="font-heading font-bold text-2xl text-brand-900 mb-1">Solicitar Cotação Rápida</h3>
-              <p class="text-slate-500 text-sm">Ao enviar, você será direcionado ao WhatsApp da nossa equipe já com os detalhes.</p>
-            </div>
-
-            <form id="lead-form" class="space-y-4">
-              <div>
-                <label for="form-name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Seu Nome Completo *</label>
-                <input type="text" id="form-name" required placeholder="Ex: Maria Silva" 
-                       class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent text-sm">
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label for="form-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Seu WhatsApp *</label>
-                  <input type="tel" id="form-phone" required placeholder="(15) 99999-9999" 
-                         class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent text-sm">
-                </div>
-                <div>
-                  <label for="form-destination" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Destino Desejado *</label>
-                  <input type="text" id="form-destination" required placeholder="Ex: Maceió, Caldas Novas..." 
-                         class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent text-sm">
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label for="form-type" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Tipo de Viagem</label>
-                  <select id="form-type" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent text-sm bg-white">
-                    <option value="Excursão Rodoviária">Excursão Rodoviária</option>
-                    <option value="Pacote Nacional (Aéreo)">Pacote Nacional (Aéreo)</option>
-                    <option value="Viagem Internacional">Viagem Internacional</option>
-                    <option value="Roteiro em Família / Grupo">Roteiro em Família / Grupo</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="form-date" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Previsão de Data / Mês</label>
-                  <input type="text" id="form-date" placeholder="Ex: Julho / Final do ano" 
-                         class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent text-sm">
-                </div>
-              </div>
-
-              <div>
-                <label for="form-notes" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Quantas pessoas / Observações adicionais</label>
-                <textarea id="form-notes" rows="2" placeholder="Ex: 2 adultos e 1 criança de 7 anos..." 
-                          class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent text-sm"></textarea>
-              </div>
-
-              <button type="submit" 
-                      class="w-full flex items-center justify-center gap-3 bg-brand-green hover:bg-brand-green-hover text-white font-extrabold text-base py-4 rounded-xl shadow-lg shadow-green-900/20 hover:shadow-green-900/40 transition duration-200">
-                <i data-lucide="send" class="w-5 h-5"></i>
-                <span>Enviar e Abrir no WhatsApp</span>
-              </button>
-
-              <p class="text-[11px] text-slate-400 text-center flex items-center justify-center gap-1.5 mt-2">
-                <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-600"></i>
-                Seus dados estão protegidos. Não enviamos spam.
-              </p>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
-        
-        <!-- Coluna 1: Sobre & Autoridade -->
-        <div class="space-y-4">
-          <div class="flex items-center gap-2.5">
-            <div class="w-9 h-9 rounded-lg bg-brand-gold flex items-center justify-center text-brand-900 font-bold">
-              <i data-lucide="compass" class="w-5 h-5"></i>
-            </div>
-            <span class="font-heading font-bold text-lg text-white">Caminhos da Terra</span>
-          </div>
-          <p class="text-xs leading-relaxed text-slate-400">
-            Desde 2008 realizando sonhos e transformando viagens em histórias memoráveis. Excursões rodoviárias, pacotes aéreos e assessoria completa em Sorocaba/SP.
-          </p>
-          <div class="flex items-center gap-2 text-xs text-amber-400 font-semibold">
-            <i data-lucide="award" class="w-4 h-4"></i>
-            <span>+18 Anos de Mercado • Cadastur Regular</span>
-          </div>
-        </div>
-
-        <!-- Coluna 2: Links Rápidos -->
-        <div>
-          <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider mb-4">Navegação</h4>
-          <ul class="space-y-2 text-xs">
-            <li><a href="#destinos" class="hover:text-brand-amber transition">Pacotes e Excursões</a></li>
-            <li><a href="#como-funciona" class="hover:text-brand-amber transition">Como Funciona</a></li>
-            <li><a href="#depoimentos" class="hover:text-brand-amber transition">Avaliações do Google</a></li>
-            <li><a href="#faq" class="hover:text-brand-amber transition">Perguntas Frequentes</a></li>
-            <li><a href="#contato" class="hover:text-brand-amber transition">Solicitar Cotação</a></li>
-          </ul>
-        </div>
-
-        <!-- Coluna 3: Atendimento e Endereço -->
-        <div>
-          <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider mb-4">Atendimento</h4>
-          <p class="text-xs text-slate-300 font-medium mb-1">Loja Física Sorocaba:</p>
-          <p class="text-xs leading-relaxed mb-3">Rua Padre Luiz, 663 - Centro<br>Sorocaba - SP, CEP 18035-060</p>
-          
-          <p class="text-xs text-slate-300 font-medium mb-1">Contato:</p>
-          <a href="https://wa.me/551533427717" class="text-xs text-brand-amber hover:underline block mb-1">
-            (15) 3342-7717 (Telefone / WhatsApp)
-          </a>
-          <span class="text-[11px] text-slate-500">Seg a Sex das 09h às 18h</span>
-        </div>
-
-        <!-- Coluna 4: Localização / Mapa Interativo -->
-        <div>
-          <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider mb-4">Como Chegar</h4>
-          <div class="w-full h-36 rounded-2xl overflow-hidden border border-white/10 shadow-inner">
-            <iframe 
-              title="Localização Caminhos da Terra"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.7466810280456!2d-47.4589998!3d-23.5015383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c58a946b5a8e03%3A0xc3b83b320d771801!2sR.%20Padre%20Luiz%2C%20663%20-%20Centro%2C%20Sorocaba%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
-              width="100%" 
-              height="100%" 
-              style="border:0;" 
-              allowfullscreen="" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade"
-              class="grayscale contrast-125 opacity-80 hover:opacity-100 hover:grayscale-0 transition duration-300">
-            </iframe>
-          </div>
-          <a href="https://maps.google.com/?q=Rua+Padre+Luiz+663+Centro+Sorocaba+SP" 
-             target="_blank" 
-             rel="noopener noreferrer" 
-             class="inline-flex items-center gap-1.5 text-[11px] text-brand-amber hover:underline mt-2">
-            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-            <span>Abrir no Google Maps</span>
-          </a>
-        </div>
-
-      </div>
-
-      <!-- Copyright e Assinatura -->
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-        <p>© 2008 - 2026 Caminhos da Terra - Viagens e Turismo. Todos os direitos reservados.</p>
-        <p class="flex items-center gap-1">
-          Feito com foco em performance e resultados.
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ==================== BOTÃO FLUTUANTE DO WHATSAPP ==================== -->
-  <a href="https://wa.me/551533427717?text=Olá!%20Gostaria%20de%20falar%20com%20um%20consultor%20da%20Caminhos%20da%20Terra." 
-     target="_blank" 
-     rel="noopener noreferrer" 
-     aria-label="Falar no WhatsApp com a Caminhos da Terra"
-     class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-brand-whatsapp text-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 animate-pulse-slow">
-    <i data-lucide="message-circle" class="w-7 h-7 sm:w-8 sm:h-8 fill-current"></i>
-    <span class="sr-only">WhatsApp</span>
+  <!-- Botão WA -->
+  <a href="https://wa.me/551533427717?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20consultor%20da%20Caminhos%20da%20Terra."
+     target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp"
+     class="w-[60px] h-[60px] rounded-full bg-green-500 hover:bg-green-400 flex items-center justify-center text-white shadow-2xl shadow-green-400/40 hover:scale-110 active:scale-95 transition-transform duration-200">
+    <svg class="w-8 h-8 fill-white" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M16.003 2.667C8.636 2.667 2.667 8.636 2.667 16c0 2.355.625 4.663 1.813 6.68L2.667 29.333l6.847-1.779A13.28 13.28 0 0 0 16.003 29.333C23.369 29.333 29.333 23.364 29.333 16c0-7.367-5.964-13.333-13.33-13.333zm5.851 18.025c-.32-.16-1.896-.934-2.19-1.04-.294-.107-.508-.16-.722.16-.214.32-.828 1.04-.1015 1.28-.187.24-.373.267-.694.107-.32-.16-1.352-.499-2.576-1.588-.952-.848-1.594-1.895-1.781-2.216-.187-.32-.02-.493.14-.652.144-.143.32-.373.48-.56.16-.186.213-.32.32-.533.107-.214.053-.4-.027-.56-.08-.16-.722-1.734-.987-2.374-.26-.623-.525-.538-.722-.548l-.614-.01c-.213 0-.56.08-.853.4-.294.32-1.12 1.094-1.12 2.667s1.147 3.094 1.307 3.308c.16.213 2.256 3.44 5.467 4.826.764.33 1.36.527 1.824.674.766.244 1.464.21 2.015.127.615-.092 1.896-.775 2.164-1.524.267-.747.267-1.387.187-1.52-.08-.134-.294-.214-.614-.374z"/>
+    </svg>
   </a>
+</div>
 
-  <!-- ==================== SCRIPTS INTERATIVOS (VANILLA JS) ==================== -->
-  <script>
-    // Inicialização dos ícones Lucide
-    lucide.createIcons();
 
-    // Menu Mobile Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
+<!-- ══════════════════════════════════════════════════════
+     SCRIPTS — VANILLA JS PURO
+══════════════════════════════════════════════════════ -->
+<script>
+// ── Lucide Icons ─────────────────────────────────────
+lucide.createIcons();
 
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
+// ── Mobile menu ──────────────────────────────────────
+(function(){
+  const toggle  = document.getElementById('mob-toggle');
+  const menu    = document.getElementById('mob-menu');
+  const iconO   = document.getElementById('mob-icon-open');
+  const iconC   = document.getElementById('mob-icon-close');
 
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-        });
-      });
-    }
+  function close(){
+    menu.classList.add('hidden');
+    iconO.classList.remove('hidden');
+    iconC.classList.add('hidden');
+  }
 
-    // Accordion FAQ
-    const faqToggles = document.querySelectorAll('.faq-toggle');
-    faqToggles.forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        const content = toggle.nextElementSibling;
-        const arrow = toggle.querySelector('.faq-arrow');
-        
-        // Fecha outros itens (opcional, para visual limpo)
-        faqToggles.forEach(otherToggle => {
-          if (otherToggle !== toggle) {
-            const otherContent = otherToggle.nextElementSibling;
-            const otherArrow = otherToggle.querySelector('.faq-arrow');
-            if (otherContent) otherContent.classList.add('hidden');
-            if (otherArrow) otherArrow.classList.remove('rotate-180');
-          }
-        });
+  toggle.addEventListener('click', () => {
+    const hidden = menu.classList.toggle('hidden');
+    iconO.classList.toggle('hidden', !hidden);
+    iconC.classList.toggle('hidden', hidden);
+  });
 
-        // Alterna o atual
-        content.classList.toggle('hidden');
-        arrow.classList.toggle('rotate-180');
-      });
+  document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', close));
+})();
+
+// ── IntersectionObserver — Scroll Reveal ─────────────
+(function(){
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
     });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    // Submissão do Formulário de Contato -> Direcionamento WhatsApp
-    const leadForm = document.getElementById('lead-form');
-    if (leadForm) {
-      leadForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('form-name').value.trim();
-        const phone = document.getElementById('form-phone').value.trim();
-        const destination = document.getElementById('form-destination').value.trim();
-        const type = document.getElementById('form-type').value;
-        const travelDate = document.getElementById('form-date').value.trim();
-        const notes = document.getElementById('form-notes').value.trim();
+  document.querySelectorAll('.reveal, .reveal-r, .reveal-l').forEach(el => io.observe(el));
+})();
 
-        let message = `*Nova Solicitação de Cotação - Caminhos da Terra*\n\n`;
-        message += `👤 *Nome:* ${name}\n`;
-        message += `📱 *WhatsApp:* ${phone}\n`;
-        message += `📍 *Destino:* ${destination}\n`;
-        message += `🎒 *Tipo de Viagem:* ${type}\n`;
-        if (travelDate) message += `📅 *Previsão de Data:* ${travelDate}\n`;
-        if (notes) message += `📝 *Observações:* ${notes}\n`;
+// ── FAQ Accordion ─────────────────────────────────────
+(function(){
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body = btn.nextElementSibling;
+      const icon = btn.querySelector('.faq-icon');
+      const open = body.classList.contains('open');
 
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/551533427717?text=${encodedMessage}`;
+      document.querySelectorAll('.faq-body.open').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.faq-icon.open').forEach(i => i.classList.remove('open'));
 
-        // Abre o WhatsApp em nova aba
-        window.open(whatsappUrl, '_blank');
-      });
+      if(!open){ body.classList.add('open'); icon.classList.add('open'); }
+    });
+  });
+})();
+
+// ── WA Balloon (5s delay, auto-hide 10s) ─────────────
+(function(){
+  const balloon = document.getElementById('wa-balloon');
+  const closeBtn = document.getElementById('balloon-close');
+
+  setTimeout(() => balloon.classList.add('show'), 5000);
+  closeBtn.addEventListener('click', () => balloon.classList.remove('show'));
+  setTimeout(() => balloon.classList.remove('show'), 15000);
+})();
+
+// ── Form → WhatsApp ───────────────────────────────────
+(function(){
+  document.getElementById('lead-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name  = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const dest  = document.getElementById('f-dest').value.trim();
+    const type  = document.getElementById('f-type').value;
+    const date  = document.getElementById('f-date').value.trim();
+    const notes = document.getElementById('f-notes').value.trim();
+
+    if(!name || !phone || !dest){
+      alert('Por favor, preencha os campos obrigatórios: Nome, WhatsApp e Destino.');
+      return;
     }
-  </script>
+
+    let msg = `*Cotação via Site — Caminhos da Terra*\n\n`;
+    msg += `👤 *Nome:* ${name}\n`;
+    msg += `📱 *WhatsApp:* ${phone}\n`;
+    msg += `📍 *Destino:* ${dest}\n`;
+    msg += `🎒 *Tipo:* ${type}\n`;
+    if(date)  msg += `📅 *Previsão:* ${date}\n`;
+    if(notes) msg += `📝 *Obs:* ${notes}\n`;
+
+    window.open(`https://wa.me/551533427717?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+})();
+</script>
+
 </body>
 </html>
